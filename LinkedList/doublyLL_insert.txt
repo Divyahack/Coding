@@ -1,0 +1,144 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int value;
+	node *next;
+	node *prev;
+};
+node *start;
+
+void insert_beg(int v)
+{
+	node *temp=new node;
+	temp->value=v;
+	if (start==NULL)
+	{
+		temp->next=NULL;
+		temp->prev=NULL;
+		start=temp;
+	}
+	else
+	{
+		start->prev=temp;
+		temp->next=start;
+		start=temp;
+	}
+}
+
+
+void insert_end(int v)
+{
+	
+	node *temp=new node;
+	temp->value=v;
+	if (start==NULL)
+	{
+		temp->next=NULL;
+		temp->prev=NULL;
+		start=temp;
+	}
+	else
+	{
+		node *t=start;
+	while(t->next!=NULL)
+	t=t->next;
+	t->next=temp;
+	temp->prev=t;
+	temp->next=NULL;
+    }
+}
+
+insert_after(int v , int x)
+{
+	node *temp=new node;
+	temp->value=v;
+	if (start==NULL)
+	{
+		temp->next=NULL;
+		temp->prev=NULL;
+		start=temp;
+	}
+	else
+	{
+		node *t=start;
+		while(t->value!=x)
+		{
+			t=t->next;
+		}
+		temp->next=t->next;
+		(t->next)->prev=temp;
+		t->next=temp;
+		temp->prev=t;
+		
+	}
+	
+}
+
+
+insert_before(int v, int x)
+{
+
+	node *temp=new node;
+	temp->value=v;
+	if (start==NULL)
+	{
+		temp->next=NULL;
+		temp->prev=NULL;
+		start=temp;
+	}
+	else
+	{
+		node *t=start;
+		while(t->value!=x)
+		{
+			t=t->next;
+		}
+		(t->prev)->next=temp;
+		temp->prev=t->prev;
+		temp->next=t;
+		t->prev=temp;
+	}
+	
+}
+
+
+void print()
+
+{
+	node *t=start;
+	if(start->next==NULL)
+	cout<<start->value<<" ";
+	else
+	{
+       
+	while(t->next!=NULL)
+	{
+		cout<<t->value<<" ";
+		t=t->next;
+	}
+	cout<<t->value;
+
+    }
+}
+int main()
+{
+	insert_beg(1);
+insert_beg(2);
+insert_beg(3);
+insert_beg(4);
+insert_beg(5);
+
+
+insert_end(1);
+insert_end(2);
+insert_end(3);
+insert_end(4);
+
+insert_after(6,2);
+
+insert_before(6,2);
+print();
+
+}
