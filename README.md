@@ -2,7 +2,7 @@
 
 Questions based on Data Structure and Algorithms
 
-**Refrences**
+**References**
 Leetcode
 GeeksforGeeks
 
