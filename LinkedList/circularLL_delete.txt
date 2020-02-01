@@ -1,0 +1,122 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int value;
+	node * next;
+};
+node *start=NULL;
+node *tail=NULL;
+
+void insert_beg(int v)
+{		node *temp=new node();
+	temp->value=v;
+	if (start==NULL)
+	{
+			start=temp;
+		tail=temp;
+	
+		temp->next=start;
+	}
+	else
+	{
+		temp->next=tail->next;
+		tail->next=temp;
+		start=temp;
+	}
+
+}
+
+void delete_beg()
+{
+	node *t1=start;
+	tail->next=start->next;
+	start=start->next;
+	delete(t1);
+}
+
+void delete_end()
+{
+	node*t1=start;
+	node *t2=tail;
+	while(t1->next!=tail)
+	t1=t1->next;
+	t1->next=start;
+	tail=t1;
+	delete(t2);
+}
+
+void delete_before(int x)
+{
+node *t1=start;
+node *t2=t1->next;
+node *t3=t2->next;
+if(t2->value==x)
+{
+delete_beg();
+}
+else
+{
+
+while(t3->value!=x)
+{
+	t3=t3->next;
+	t2=t2->next;
+	t1=t1->next;
+}
+
+t1->next=t3;
+delete(t2);
+
+}}
+
+
+void delete_after(int x)
+{
+node *t1=start;
+node *t2;
+	while(t1->value!=x)
+	{
+		t1=t1->next;		
+	}
+	t2=t1->next;
+	t1->next=t2->next;
+	delete(t2);
+}
+
+
+
+void print()
+{
+	node *run=start;
+	if (run->next==start)
+	cout<<run->value<<" ";
+else{
+	
+	while(run->next!=start)
+	{
+		cout<<run->value<<" ";
+		run=run->next;
+	}
+	cout<<run->value;
+    }
+}
+
+
+
+int main()
+{
+	insert_beg(5);
+	insert_beg(7);
+	insert_beg(8);
+	insert_beg(9);
+delete_beg();
+delete_beg();
+
+delete_end();
+delete_end();
+
+delete_after(9);
+	print();
+}
