@@ -1,0 +1,150 @@
+//////////////////////////////////////////CIRCULAR LL //////////////////////////////////////////////////////
+
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int value;
+	node * next;
+};
+node *start=NULL;
+node *tail=NULL;
+
+void insert_beg(int v)
+{	
+	node *temp=new node();
+	temp->value=v;
+	if (start==NULL)
+	{
+			start=temp;
+		tail=temp;
+	
+		temp->next=start;
+	}
+	else
+	{
+		temp->next=tail->next;
+		tail->next=temp;
+		start=temp;
+	}
+}
+
+void insert_end(int v)
+{
+	node *temp=new node();
+	temp->value=v;
+	if(start==NULL)
+	{
+			start=temp;
+		tail=temp;
+		temp->next=start;
+	
+	}
+   else
+   {
+   	temp->next=tail->next;
+   	tail->next=temp;
+   	tail=temp;
+   }
+	
+}
+
+void insert_before(int v , int x)       //before x
+{
+	node *temp=new node();
+	temp->value=v;
+		if(start==NULL)
+	{
+				start=temp;
+                 tail=temp;
+		temp->next=start;
+	}
+	else
+	{
+		node *t1,*t2;
+		t1=start;
+		t2=t1->next;
+		if(t1->value==x)
+		{
+			insert_beg(v);
+		}
+		else
+		{
+			while(t2->value!=x)
+			{
+				t2=t2->next;
+				t1=t1->next;
+			}
+			temp->next=t2;
+			t1->next=temp;
+		}
+	}
+	
+	
+}
+
+void insert_after(int v , int x)
+{
+	
+	node *temp=new node();
+	temp->value=v;
+		if(start==NULL)
+	{
+		start=temp;
+		tail=temp;
+		temp->next=start;
+		
+	}
+	else
+	{
+		node *t1=start;
+		while(t1->value!=x)
+		t1=t1->next;
+		temp->next=t1->next;
+		t1->next=temp;
+	}
+	
+}
+
+void print()
+{
+	node *run=start;
+	if (run->next==start)
+	cout<<run->value<<" ";
+else{
+	
+	while(run->next!=start)
+	{
+		cout<<run->value<<" ";
+		run=run->next;
+	}
+	cout<<run->value;
+    }
+}
+
+
+
+int main()
+{
+	insert_beg(5);
+	insert_beg(7);
+	insert_beg(8);
+	insert_beg(5);
+		insert_beg(9);
+	insert_beg(6);
+
+
+insert_end(5);
+insert_end(6);
+insert_end(7);
+insert_end(8);
+
+insert_before( 9,6);
+
+
+insert_after(9,8);
+
+	print();
+}
+
