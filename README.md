@@ -1,6 +1,6 @@
 # Coding
 
-coding questions based on data structures
+Coding Questions based on Data Structures and Algorithms
 
 **References**
 
