@@ -1,0 +1,139 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int value;
+	node *next;
+	node *prev;
+};
+node *start;
+
+void insert_end(int v)
+{
+	
+	node *temp=new node;
+	temp->value=v;
+	if (start==NULL)
+	{
+		temp->next=NULL;
+		temp->prev=NULL;
+		start=temp;
+	}
+	else
+	{
+		node *t=start;
+	while(t->next!=NULL)
+	t=t->next;
+	t->next=temp;
+	temp->prev=t;
+	temp->next=NULL;
+    }
+}
+
+void delete_beg()
+{
+	node *t=start;
+
+	if (t->next==NULL)
+	{
+		t->next=NULL;
+		t->prev=NULL;
+
+		delete(t);
+	}
+	else
+	{
+	
+start=start->next;
+start->prev=NULL;
+delete(t);
+}
+}
+
+void delete_end()
+{
+		node *t=start;
+
+	if (t->next==NULL)
+	{
+		t->next=NULL;
+		t->prev=NULL;
+
+		delete(t);
+	}
+	else
+	{
+    while(t->next!=NULL)
+	t=t->next;
+	(t->prev)->next=NULL;
+	delete(t);	
+    }
+}
+
+
+void delete_after(int x)
+{
+node *t=start;
+while(t->value!=x)
+t=t->next;
+
+node *t2=t->next;
+
+t->next=t2->next;
+t2->next->prev=t;
+delete(t2);	
+}
+
+
+void delete_before(int x)
+{
+node *t=start;
+while(t->value!=x)
+t=t->next;
+
+node *t2=t->prev;
+
+t->prev=t2->prev;
+//t->prev=t;
+t2->prev->next=t;
+
+delete(t2);	
+}
+
+
+
+void print()
+
+{
+	node *t=start;
+	if(start->next==NULL)
+	cout<<start->value<<" ";
+	else
+	{
+       
+	while(t->next!=NULL)
+	{
+		cout<<t->value<<" ";
+		t=t->next;
+	}
+	cout<<t->value;
+
+    }
+}
+int main()
+{
+
+insert_end(1);
+insert_end(2);
+insert_end(3);
+insert_end(4);
+delete_beg();
+delete_beg();
+delete_end();
+delete_end();
+delete_after(2);
+delete_before(3);
+print();
+
+}
