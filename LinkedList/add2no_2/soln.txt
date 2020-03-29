@@ -1,0 +1,72 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        stack<int> s1,s2,s3;
+        
+        
+        while(l1)
+        {
+            s1.push(l1->val);
+            l1=l1->next;
+        }
+        while(l2)
+        {
+            s2.push(l2->val);
+            l2=l2->next;
+        }
+        
+        int c=0 ,sum=0 ,rem ;
+        while(!s1.empty() && !s2.empty())
+        {
+            sum=s1.top() +s2.top() +c;
+            rem=sum%10;
+            c=sum/10;
+            s3.push(rem);
+            s1.pop();
+            s2.pop();
+        }
+        while(!s1.empty())
+        {
+            sum=s1.top()  +c;
+            rem=sum%10;
+            c=sum/10;
+            s3.push(rem);
+            s1.pop();
+        }
+        while(!s2.empty())
+        {
+            
+            sum=s2.top() +c;
+            rem=sum%10;
+            c=sum/10;
+            s3.push(rem);
+            s2.pop();
+        }
+        if (c)
+         s3.push(c);
+        
+        
+        // s3 is result stack
+        ListNode *dummy=new ListNode (0);
+        ListNode *t2=dummy;
+        int value;
+        while(!s3.empty())
+        {
+          value=  s3.top();
+            ListNode *newnode=new ListNode(value);
+                s3.pop();
+            t2->next=newnode;
+            t2=t2->next;
+        }
+        t2->next=NULL;
+        return dummy->next;
+    }
+};
