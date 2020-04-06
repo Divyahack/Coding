@@ -1,0 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeZeroSumSublists(ListNode* head) {
+         auto dummy = new ListNode(-1);
+    dummy->next = head;
+    auto p = dummy;
+    while(p)
+    {
+        int sum = 0;
+        bool flag = false;
+        auto q = p->next;
+        
+        while(q)
+        {
+            sum += q->val;
+            if(sum == 0)
+            {
+                p->next = q->next;
+                flag = true;
+                break;
+            }
+            q = q->next;
+        }
+        if(!flag)
+            p = p->next;
+    }
+    
+    return dummy->next;
+    }
+};
