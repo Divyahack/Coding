@@ -1,0 +1,5 @@
+int setKthBit(int n, int k) 
+{ 
+    // left shift 1 k times 
+    return ((1 << k) | n); 
+} 
