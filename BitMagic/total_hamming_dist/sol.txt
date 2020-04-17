@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int totalHammingDistance(vector<int>& nums) {
+int distance = 0;
+       unordered_set <int> zero,one;
+     for(int i=0;i<32;i++)
+        {
+            for(int x : nums)
+        {
+            if(x&1==1)
+                one.insert(x);
+            else
+                zero.insert(x);
+        }
+        distance+=one.size()*zero.size();
+        
+        for(int x : nums)
+        {
+            x=x>>1;
+        }
+    }
+        return distance;
+    }
+};
+
+
+/*The total Hamming distance is constructed bit by bit in this approach.
+
+Let's take a series of number: a1, a2, a3,..., an
+
+Just think about all the Least Significant Bit (LSB) of a(k) (1 ≤ k ≤ n).
+
+
+For all number a1, a2, a3,..., a(n), if there are p numbers have 0 as LSB (put in set M), and q numbers have 1 for LSB (put in set N).
+
+There are 2 situations:
+
+Situation 1. If the 2 number in a pair both comes from M (or N), the total will get 0.
+
+Situation 2. If the 1 number in a pair comes from M, the other comes from N, the total will get 1.
+
+Since Situation 1 will add NOTHING to the total, we only need to think about Situation 2
+
+How many pairs are there in Situation 2?
+
+The total Hamming distance will get pq from LSB.
+*/
