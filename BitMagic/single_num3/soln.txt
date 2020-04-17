@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        
+        vector<int> res;
+        unordered_map<int , int> map;
+         for(int x : nums)
+             map[x]++;
+        
+        for( auto y : map)
+        {
+            if (y.second==1)
+                res.push_back(y.first);
+        }
+        return res;
+        
+    }
+};
