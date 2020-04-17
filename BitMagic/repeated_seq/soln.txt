@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        vector<string> res;
+        unordered_map<string,int> map;
+        
+        if(s.length()<10)
+            return res;
+        
+        for(int i=0;i<=s.length()-10;i++)
+        {
+            string ss= s.substr(i,10);
+            map[ss]++;
+            if (map[ss]==2)
+            {
+                res.push_back(ss);
+             }
+        }
+        return res;
+    }
+};
