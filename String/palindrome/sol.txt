@@ -1,0 +1,33 @@
+
+#include <iostream>
+using namespace std;
+
+// to check string palindrome or not
+
+bool check(string str)
+{
+    int i=0;
+    int j=str.length()-1;
+    while(i<j)
+    {
+        if (str[i]==str[j])
+        {
+            i++;
+            j--;
+        }
+        else
+        return false;
+    }
+    return true;
+}
+int main()
+{
+    string str="aabcXbbaa";
+    cout<< "string is \n"<<str;;
+    bool out=check(str);
+    cout<<" ans is ="<<out;
+    return 0;
+}
+
+
+
