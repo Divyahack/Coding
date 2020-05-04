@@ -1,0 +1,1 @@
+Find minimum element from given array using recursion.
