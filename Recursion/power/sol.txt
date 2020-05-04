@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+int power( int num1, int num2)
+{
+    //base case
+    if(num2==0)
+      return 1;
+    else if(num1==0)
+        return 0;
+    else if (num2==1)
+       return num1;
+    
+    else
+    {
+        int x = power(num1 , num2-1);
+        return num1*x;
+    }
+}
+int main()
+{
+    int num1=5;
+    int num2=2;
+int ans=power(num1 , num2);
+   cout << "\nnum1 to the power num2  is : " << ans; 
+   
+   return 0;
+}
+
+
+
+
