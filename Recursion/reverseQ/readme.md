@@ -1,0 +1,1 @@
+To reverse a queue without using stack ......by recursion.
