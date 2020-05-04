@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+int fibo( int n)
+{
+    //base case
+    if (n==0)
+      return 0;
+    else if(n==1)
+       return 1;
+    else
+    {
+        int x=fibo(n-1);
+        int y=fibo(n-2);
+     return   x+y; 
+    }
+}
+int main()
+{
+    int n=7;
+int ans=fibo(n);
+   cout << "\n n number of fibonacci series is : " << ans; 
+   
+   return 0;
+}
