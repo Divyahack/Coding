@@ -1,0 +1,1 @@
+Find nth term of tribonacci series.
