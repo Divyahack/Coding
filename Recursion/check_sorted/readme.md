@@ -1,0 +1,1 @@
+To check whether given array is sorted or not using recursion.
