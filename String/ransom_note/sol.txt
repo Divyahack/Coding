@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char , int > mag_map;
+        
+        for(auto x : magazine)
+        {
+            if(mag_map.find(x)==mag_map.end())    //not found
+            mag_map[x]=1;
+            else
+                mag_map[x]++;
+        }
+        
+        // search ransomNote in map
+        for(auto x : ransomNote)
+        {
+            if(mag_map.find(x)!=mag_map.end())  //found
+            {
+                mag_map[x]--;
+                if(mag_map[x]==0)
+                    mag_map.erase(x);
+                
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+};
