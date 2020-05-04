@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int find_min(int arr[], int start, int end)
+{
+    //base case
+    if(start==end)     // one ele
+        return arr[start];
+    int min= find_min(arr, start+1 , end);
+    // check this max of subarray from start ele
+    if(min>arr[start])
+       return arr[start];
+     else
+     return min;
+}
+int main()
+{
+    int size=5;
+    int arr[]={5,2,1,3,4};
+     
+
+int ans=find_min(arr,0,size-1);
+   cout << "\nmin is : " << ans; 
+   
+   return 0;
+}
