@@ -1,0 +1,62 @@
+#include <iostream>
+
+using namespace std;
+
+int find_min_pos(int arr[], int start , int end)
+{
+    int min=arr[start];
+    int min_pos=start;
+    for(int i=start+1; i<end;i++)
+    {
+        if (arr[i]<min)
+        {
+        min=arr[i];
+        min_pos=i;
+        }
+        
+    }
+    return min_pos;
+}
+
+void selection_sort(int arr[],int start , int end)
+{
+    if (start>=end)
+       return;
+    
+   int min_pos=find_min_pos(arr , start, end);
+   //swap min with first ele
+   int temp=arr[start];
+   arr[start]=arr[min_pos];
+   arr[min_pos]=temp;
+   
+   // now sort remaining array
+   selection_sort(arr , start+1 , end);
+   
+     
+}
+
+
+ void display(int arr[], int size)
+ {
+     cout<<"\nArray is :";
+     for(int i=0;i<size;i++)
+     cout<<arr[i]<<" ";
+     
+ }
+
+int main()
+{
+    int size=5;
+    int arr[size]={5,3,4,2,1};
+    cout<<"\n Before sort :";
+    display(arr,size);
+   selection_sort(arr,0,size);
+   cout<<"\n After sort :";
+   display(arr,size);
+    
+   
+   return 0;
+}
+
+
+
