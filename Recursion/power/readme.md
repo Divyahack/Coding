@@ -1,0 +1,1 @@
+Find num1 raise to the power num2.......num1^num2.
