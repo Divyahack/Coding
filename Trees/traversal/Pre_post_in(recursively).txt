@@ -1,0 +1,70 @@
+// tree traversal ( pre post in order) using recursion
+#include<iostream>
+using namespace std;
+struct Node
+{
+    int data;
+    Node *left , *right;
+    Node(int d)
+    {
+        data=d;
+        left=right=NULL;
+    }
+};
+
+// preorder
+void preorder(Node * root)
+{
+    //base case
+    if(root==NULL)
+        return;
+    cout<<" "<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+//inorder
+void inorder(Node * root)
+{
+    //base case
+    if(root==NULL)
+        return;
+    
+    inorder(root->left);
+    cout<<" "<<root->data<<" ";
+    inorder(root->right);
+}
+
+//postorder
+void postorder(Node * root)
+{
+    //base case
+    if(root==NULL)
+        return;
+    
+    postorder(root->left);
+    postorder(root->right);
+    cout<<" "<<root->data<<" ";
+}
+
+
+
+int main()
+{
+    Node *root = new Node(1);
+    root->left=new Node(2);
+    root->right=new Node(3);
+    root->left->left=new Node(4);
+    root->left->right=new Node(5);
+    
+    cout<<"\n PreOrder Traversal is :\n";
+    preorder(root);
+    cout<<"\n InOrder Traversal is :\n";
+    inorder(root);
+    cout<<"\n PostOrder Traversal is :\n";
+    postorder(root);
+    
+    return 0;
+}
+
+
