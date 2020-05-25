@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        
+        if(root==NULL)
+            return ;
+        
+        // leaf node
+        if(root->left==NULL && root->right==NULL)
+            return;
+        
+        flatten(root->left);
+        flatten(root->right);
+        
+        if(root->left)
+        {
+            TreeNode* temp=root->right;    // store right child
+            // make left child as right child
+            root->right=root->left;
+            root->left=NULL;
+             // now append stored right child
+            TreeNode *p=root;
+            while(p->right!=NULL)
+                p=p->right;
+            p->right=temp;
+            
+        }
+    }
+};
