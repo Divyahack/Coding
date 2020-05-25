@@ -1,0 +1,35 @@
+
+class Solution {
+public:
+    void help(TreeNode* root , int sum , vector<int> curr ,vector<vector<int>> &ans)
+    {
+        
+        if(root==NULL)
+           return ;
+
+        int rem_sum=sum-root->val;
+        curr.push_back(root->val);
+        // leaf node
+        if(root->left==NULL && root->right==NULL)
+        {
+            if(rem_sum==0 && curr.size()>0)
+            {  ans.push_back(curr);
+            }
+            curr.clear();
+         }
+        help(root->left , rem_sum, curr , ans);
+        help(root->right , rem_sum , curr ,ans);
+        
+    
+    }
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        if(root==NULL)
+           return {};
+    vector<int> curr;
+        vector<vector<int>> ans;
+    
+        help(root , sum , curr , ans);
+        return ans;
+    }
+};
+
