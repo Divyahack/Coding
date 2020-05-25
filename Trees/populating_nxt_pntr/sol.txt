@@ -1,0 +1,20 @@
+class Solution {
+public:
+    Node* connect(Node* root) {
+      Node *curr=root;
+        while(curr)
+        {
+            Node *level=curr;
+            while(level)
+            {
+                if(level->left)
+                    level->left->next=level->right;
+                if(level->next && level->right)
+                    level->right->next=level->next->left;
+                level=level->next;
+            }
+            curr=curr->left;
+        }
+        return root;
+    }
+};
