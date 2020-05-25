@@ -1,0 +1,52 @@
+
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+         if(nullptr == root)
+            return nullptr;
+        
+        Node* pre = root;
+        Node* cur_head = nullptr;
+        Node* cur = nullptr;
+        while(pre != nullptr)
+        {
+            while(pre != nullptr)
+            {
+                //go to left child
+                if(pre -> left != nullptr)
+                {
+                    if(cur == nullptr) 
+                    {
+                        cur_head =  pre -> left;
+                    } 
+                    else if(cur != nullptr)
+                    {
+                        cur -> next = pre -> left;
+                    }
+                    cur = pre -> left; 
+                }
+                
+                //go to right child
+                if(pre -> right != nullptr) {
+                    if(cur == nullptr) {
+                        cur_head = pre -> right;   
+                    } else if(cur != nullptr) {
+                        cur -> next = pre -> right;
+                    }
+                    cur = pre -> right;
+                }
+                
+                pre = pre -> next;//go to next node.
+            }
+            
+            pre = cur_head;
+            cur_head = nullptr;
+            cur = nullptr;
+        }
+        
+        return root;  
+    }
+};
+
+
