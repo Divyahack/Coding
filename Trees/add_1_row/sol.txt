@@ -1,0 +1,38 @@
+ */
+class Solution {
+public:
+     TreeNode* addOneRow(TreeNode *root, int v, int d)
+    {
+		if (d == 1)
+        {
+			TreeNode  *temp = new TreeNode(v);
+			temp->left = root;
+			return temp;
+		}
+
+		aux(root, v, d, 1);
+		return root;
+	}
+
+	 void aux(TreeNode *root, int v, int d, int depth) 
+    {
+
+		if (root == NULL || depth >= d)
+			return;
+
+		if (depth == d-1)
+        {
+			TreeNode *leftNode = new TreeNode(v);
+			leftNode->left = root->left;
+			root->left = leftNode;
+			TreeNode *rightNode = new TreeNode(v);
+			rightNode->right = root->right;
+			root->right = rightNode;
+		}
+
+		aux(root->left, v, d, depth + 1);
+		aux(root->right, v, d, depth + 1);
+
+	}
+
+};
