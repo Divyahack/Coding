@@ -1,0 +1,25 @@
+
+class Solution {
+public:
+ 
+     vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) 
+    {
+       unordered_map<string,int> m;
+       vector<TreeNode*> res;
+       encode(m,res,root);
+       return res; 
+    }
+    string encode(unordered_map<string,int> & m,vector<TreeNode *> & res,TreeNode * root)
+    {
+        if(root==NULL)
+           return "";
+        
+            string l=encode(m,res,root->left);
+        string r=encode(m,res,root->right);
+        string str=to_string(root->val)+"("+l+")"+"("+r+")";
+        m[str]+=1;
+        if(m[str]==2)
+           res.push_back(root);
+        return str;
+    }
+};
