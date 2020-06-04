@@ -1,0 +1,42 @@
+
+class Solution {
+public:
+    bool isCompleteTree(TreeNode* root)
+    {
+       if(!root)
+           return false;
+        queue<TreeNode *> q;
+        int flag=0;
+        q.push(root);
+        while(!q.empty())
+        {
+            TreeNode *temp=q.front();
+            q.pop();
+            if (temp->left)
+            {
+                if(flag==1)
+                     return false;
+            
+            q.push(temp->left);
+
+                
+            }
+             else
+                flag=1;
+            if (temp->right)
+            {
+                if(flag==1)
+                     return false;
+            
+            q.push(temp->right);
+
+                
+            }
+            else
+                flag=1;
+        }
+        return true;
+    }
+};
+
+
