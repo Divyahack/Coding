@@ -1,0 +1,26 @@
+
+class Solution {
+public:
+ bool notContainingone(TreeNode *root)
+    {
+        if(!root) 
+            return 1;
+        if(root->val==0 && notContainingone(root->left) && notContainingone(root->right))
+            return 1;
+        else
+            return 0;
+    }
+    TreeNode* pruneTree(TreeNode* root) 
+    {
+        if(!root)
+            return NULL;
+         pruneTree(root->left);
+         if(notContainingone(root->left)==1)
+             root->left=NULL;
+        pruneTree(root->right);
+         if(notContainingone(root->right)==1)
+             root->right=NULL;
+        return root;
+    }
+};
+
