@@ -1,0 +1,27 @@
+
+class Solution {
+public:
+    
+     bool help(TreeNode * curr, int val)
+    {
+         if(!curr)
+            return true;
+        
+        if(curr->val!=val)
+            return false;
+         
+         bool l=help(curr->left , val);
+         bool r=help(curr->right , val);
+        return  l&&r  ;
+        
+    }
+    
+    
+    bool isUnivalTree(TreeNode* root)
+    {
+        if(!root)
+            return true;
+       else
+           return help(root , root->val);
+    }
+};
