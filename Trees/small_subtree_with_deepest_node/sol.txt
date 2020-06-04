@@ -1,0 +1,28 @@
+
+class Solution {
+public:
+   int hei(TreeNode* rt)
+   {
+        if(rt==NULL)
+            return 0;
+        return 1+max(hei(rt->left),hei(rt->right));
+   }
+    TreeNode* subtreeWithAllDeepest(TreeNode* root)
+    {
+        if(root==NULL)
+            return NULL;
+        if(root->left==NULL && root->right==NULL)
+            return root;
+        
+        if(hei(root->left)==hei(root->right))
+            return root;
+        
+        else if(hei(root->left)>hei(root->right))
+            return subtreeWithAllDeepest(root->left);
+       
+        else
+            return subtreeWithAllDeepest(root->right); 
+        
+    }
+};
+
