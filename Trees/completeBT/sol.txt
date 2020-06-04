@@ -1,0 +1,47 @@
+
+class CBTInserter 
+{
+private:
+    TreeNode* new_root = NULL;
+public:
+    CBTInserter(TreeNode* root)
+    {
+        new_root = root;
+    }
+    
+    int insert(int v)
+    {
+        // Use bfs for insertion
+        queue<TreeNode*> q;
+        q.push(new_root);
+       TreeNode* curr;
+        while(!q.empty())
+        {
+        curr = q.front();
+            q.pop();
+            
+            if(!curr->left)
+            {
+                curr->left = new TreeNode(v);
+                break;
+            }
+            if(!curr->right)
+            {
+                curr->right = new TreeNode(v);
+                break;
+            }
+            
+            if(curr->left)
+                q.push(curr->left);
+            if(curr->right)
+                q.push(curr->right);
+        }
+        
+        return curr->val;
+    }
+    
+    TreeNode* get_root() {
+        return new_root;
+    }
+};
+
