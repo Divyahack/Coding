@@ -1,0 +1,31 @@
+node* insert(node* root, int key) 
+{
+    if(root==NULL)
+    {
+        root=newNode(key);
+    }
+    else
+    {
+        node *par ;
+        node *curr=root;
+        while(curr)
+        {
+            par=curr;
+            if(key>curr->key)
+                curr=curr->right;
+            else
+               curr=curr->left;
+        
+        }
+        
+        
+        if(key < par->key)
+            par->left=newNode(key);
+        else
+            par->right=newNode(key);
+    }
+}
+
+
+
+
