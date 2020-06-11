@@ -1,0 +1,27 @@
+
+class Solution {
+public:
+    TreeNode* increasingBST(TreeNode* root) {
+        queue<int> q;
+        order(root , q);
+        
+        TreeNode *dummy = new TreeNode(-1);
+        TreeNode *curr=dummy;
+        while(!q.empty())
+       {
+             TreeNode *temp=new TreeNode(q.front());
+              q.pop();
+            curr->right=temp;
+            curr=curr->right;
+        }
+    return dummy->right;
+    }
+    void order(TreeNode* root , queue<int> &q)
+    {
+        if(!root)
+            return;
+             order(root->left , q);
+        q.push(root->val);
+            order(root->right , q);
+    }
+};
