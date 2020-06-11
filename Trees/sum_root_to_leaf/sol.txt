@@ -1,0 +1,28 @@
+
+class Solution {
+public:
+ int sum=0;
+    int sumNumbers(TreeNode* root)
+    {
+       
+        return sumRootToLeaf(root, 0);
+        
+    }
+    
+    int sumRootToLeaf(TreeNode* node,int currentSum)
+    {
+        
+        if(node == NULL)
+            return 0;
+        
+        currentSum = currentSum*10 + node->val;
+        if(node->left == NULL && node->right == NULL) 
+        {
+            sum += currentSum;
+            return sum;
+        }
+        sumRootToLeaf(node->left, currentSum);
+        sumRootToLeaf(node->right, currentSum);
+        return sum;
+    }
+};
