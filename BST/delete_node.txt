@@ -1,0 +1,44 @@
+/*Delete Node in a BST
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+
+Basically, the deletion can be divided into two stages:
+
+Search for a node to remove.
+If the node is found, delete the node.
+
+*/
+
+class Solution {
+public:
+    int getmin(TreeNode *root)
+    {
+        while(root->left)
+            root=root->left;
+        return root->val;
+    }
+    TreeNode* deleteNode(TreeNode* root, int key) {
+     if(!root)
+         return NULL;
+        if(key< root->val)
+            root->left=deleteNode(root->left , key);
+    else if(key> root->val)
+            root->right=deleteNode(root->right , key);
+        else
+        {
+            if(!root->left)
+                return root->right;
+            if(!root->right)
+                return root->left;
+            else
+                // if both childs
+            {
+                int min_val=getmin(root->right);
+                root->val=min_val;
+                root->right=deleteNode(root->right , min_val);
+                
+            }
+        }
+        return root;
+    
+    }
+};
