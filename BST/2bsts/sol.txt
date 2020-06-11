@@ -1,0 +1,22 @@
+
+class Solution {
+public:
+    void order(TreeNode * root , vector<int>& vec )
+    {
+        if(!root)
+            return;
+        order(root->left , vec);
+        vec.push_back(root->val);
+        order(root->right , vec);
+    }
+    
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
+        vector<int> vec1;
+        
+        order(root1, vec1);
+        order(root2 ,vec1);
+       sort(vec1.begin() , vec1.end());
+        return vec1;
+    }
+
+};
