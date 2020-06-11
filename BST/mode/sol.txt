@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        if(!root)
+            return {};
+        stack<TreeNode*> s;
+        unordered_map<int , int> map;
+        s.push(root);
+        while(!s.empty())
+        {
+            TreeNode *temp=s.top();
+            s.pop();
+            map[temp->val]++;
+            if(temp->left)
+                s.push(temp->left);
+            if(temp->right)
+                s.push(temp->right);       
+        }
+        // find max freq
+        int max=INT_MIN;
+        for(auto x:map)
+        {
+            if(x.second>max)
+                max=x.second;
+        }
+        vector<int> res;
+        for(auto x:map)
+        {
+            if(x.second==max)
+                res.push_back(x.first);
+        }
+        return res;
+    }
+};
