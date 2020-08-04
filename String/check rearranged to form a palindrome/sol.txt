@@ -1,0 +1,12 @@
+bool canFormPalindrome(string str) 
+{ 
+	int count[256] = {0}; 
+for (int i = 0; i<str.length(); i++) 
+		count[str[i]]++; 
+int c= 0; 
+	for (int i = 0; i < 256; i++) 
+	{ 
+		c+=count[i]%2;       // for even occurence c=c+0 else c=c+1;
+	} 
+	return c<=1;         // only 1 ele occurence should be odd
+} 
