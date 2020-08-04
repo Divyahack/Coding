@@ -1,0 +1,33 @@
+
+
+class Solution {
+public:
+    void help(vector<int> candidates, int target , vector<int> curr,vector<vector<int>> &res , int start)
+    {
+        if(target==0)
+        {
+            res.push_back(curr);
+            return;
+        }
+        for(int i=start ;i<candidates.size();i++)
+        {
+           if(candidates[i]>target)
+               break;
+            
+            curr.push_back(candidates[i]);
+            help(candidates , target-candidates[i] , curr , res , i);    // 'i' becoz we can again choose that ele
+            curr.pop_back();
+        }
+        
+    }
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int>curr;
+        vector<vector<int>> res;
+        sort(candidates.begin() , candidates.end());
+        help(candidates , target , curr , res , 0);
+        return res;
+    }
+};
+
+
