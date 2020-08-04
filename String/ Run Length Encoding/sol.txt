@@ -1,0 +1,20 @@
+
+string printRLE(string str) 
+{ 
+	int n = str.length();
+	string res="";
+	for (int i = 0; i < n; )
+	{ 
+	int count = 1;
+	int j=i+1;
+		while (j<n && str[i]==str[j])
+		{ 
+			count++; 
+			j++;
+		}
+		res+=str[i]+to_string(count);
+		i=j;
+          
+	} 
+	return res;
+} 
