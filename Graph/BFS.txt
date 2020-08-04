@@ -1,0 +1,65 @@
+BFS traversal
+
+
+
+#include<iostream> 
+#include <list> 
+#include<bits/stdc++.h>
+
+using namespace std; 
+
+
+void addEdge(list<int> adj[] , int v, int w) 
+{ 
+	adj[v].push_back(w);  
+} 
+
+void BFS(int s , list<int>adj[] , int V) 
+{ 
+    bool visited[V]; 
+	for(int i = 0; i < V; i++) 
+		visited[i] = false; 
+	queue<int> queue; 
+
+	visited[s] = true; 
+	queue.push(s); 
+	list<int>::iterator i; 
+
+	while(!queue.empty()) 
+	{ 
+		s = queue.front(); 
+		cout << s << " "; 
+		queue.pop(); 
+		for (i = adj[s].begin(); i != adj[s].end(); i++) 
+		{ 
+			if (visited[*i]==false) 
+			{ 
+				visited[*i] = true; 
+				queue.push(*i); 
+			} 
+		} 
+	} 
+} 
+int main() 
+{ 
+    	int V=4; // No. of vertices 
+
+	list<int> adj[V]; 
+
+    
+	addEdge(adj , 0, 1); 
+	addEdge(adj , 0, 2); 
+	addEdge(adj ,1, 2); 
+	addEdge(adj ,2, 0); 
+	addEdge(adj ,2, 3); 
+	addEdge(adj ,3, 3); 
+
+	cout << "Following is Breadth First Traversal "
+		<< "(starting from vertex 2) \n"; 
+	BFS(2 , adj , V); 
+
+	return 0; 
+} 
+
+
+
