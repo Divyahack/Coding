@@ -1,0 +1,28 @@
+
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) 
+    {
+        vector<string> res;
+        string curr;
+        generate(n, 0, 0, curr, res);
+        return res;
+    }
+private:
+    void generate(int n, int l, int r, string curr, vector<string>& res)
+    {
+        if (l == n && r == n)
+        {
+            res.push_back(curr);
+            return;
+        } 
+        else
+        {
+            if (l < n) 
+                generate(n, l + 1, r, curr + '(', res);
+            if (r < l) 
+                generate(n, l, r + 1, curr + ')', res);
+            
+        }
+    }
+};
