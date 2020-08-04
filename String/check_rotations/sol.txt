@@ -1,0 +1,26 @@
+
+
+
+
+bool substr(string temp , string str2)
+{int i , j;
+    for( i=0;i<temp.length();i++)
+    {
+        for( j=0;j<str2.length();j++)
+        {
+            if(temp[i+j]!=str2[j])
+            break;
+        }
+        if(j==str2.length())
+        return true;
+    }
+       return false;
+}
+bool areRotations(string str1, string str2) 
+{ 
+if (str1.length() != str2.length()) 
+		return false; 
+
+string temp = str1 + str1; 
+return substr(temp , str2); 
+}
