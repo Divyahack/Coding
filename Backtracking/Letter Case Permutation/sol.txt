@@ -1,0 +1,28 @@
+class Solution {
+public:
+    
+    void help(string S , vector<string> &res , int pos)
+    {
+        if(pos==S.length())
+        {
+            res.push_back(S);
+            return ;
+        }
+        if(isalpha(S[pos]))
+        {
+            S[pos]=tolower(S[pos]);
+            help(S ,res , pos+1);
+            S[pos]=toupper(S[pos]);
+            help(S ,res , pos+1);
+        }
+        else
+        help(S , res , pos+1);
+    }
+    
+    vector<string> letterCasePermutation(string S) {
+      vector<string> res;
+        help(S , res , 0);
+        return res;
+    }
+};
+
