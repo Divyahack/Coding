@@ -1,0 +1,43 @@
+
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        // 1 blue
+        // -1 red
+        // 0 unvisited
+        int v=graph.size();
+        vector<int> color(v ,0);
+        queue<int> q;
+        
+        for(int i=0;i<v;i++)
+        {
+            if(color[i]== 1 || color[i]==-1)  // already coloured
+                continue;
+            q.push(i);
+            color[i]=1; // mark color
+            while(!q.empty())
+            {
+                int curr =q.front();
+                q.pop();
+                // now traveres its neighour
+                for( int next : graph[curr])
+                {
+                    // not visited
+                    if(color[next]==0)
+                    {
+                        color[next]=-1 * color[curr];    // -ve color of neighbour
+                        q.push(next);
+                    }
+                    //already visited
+                    if(color[next]==color[curr])
+                        return false;
+                    
+                }
+                
+                
+           }
+        }
+        return true;
+        
+    }
+};
