@@ -1,0 +1,43 @@
+class Solution {
+public:
+    bool possibleBipartition(int N, vector<vector<int>>& dislikes) {
+      vector<int> color(N+1 , 0);
+        queue<int> q;
+        list<int> dis[N+1];  // to maintain dislikes of each node
+         // prepare list
+        for(auto  x : dislikes)
+        {
+            dis[x[0]].push_back(x[1]);
+            dis[x[1]].push_back(x[0]);
+        }
+        
+        for(int i=1;i<=N;i++)
+        {
+            if(color[i]==0)    // unvisited
+            {
+                color[i]=1;
+                q.push(i);
+                
+
+                while(!q.empty())
+                {
+                    int curr =q.front();
+                    q.pop();
+                    for(int next : dis[curr])
+                    {
+                        if(color[curr]==color[next])return false;
+                        if(color[next]==0)
+                        {
+                            color[next]=-1*color[curr];
+                            q.push(next);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
+
+
+
