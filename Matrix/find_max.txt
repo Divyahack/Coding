@@ -1,0 +1,16 @@
+//Program to find the maximum element in a Matrix
+
+void max(int A[][N]) 
+{ 
+ int max_num=0;
+	for (int i = 0; i < N; i++) 
+	{
+	    for (int j = 0; j < N; j++) 
+		{
+		    max_num=std::max(max_num , A[i][j]);
+		}
+	}
+printf("\n Maximum no is : %d",max_num);
+} 
+
+
