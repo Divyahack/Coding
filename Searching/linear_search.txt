@@ -1,0 +1,45 @@
+
+/*Linear Search
+Problem: Given an array arr[] of n elements,
+ write a function to search a given element x in arr[].
+*//
+
+#include <iostream> 
+using namespace std; 
+
+int search(int arr[], int n, int x) 
+{ 
+	for (int i = 0; i < n; i++) 
+		if (arr[i] == x) 
+			return i; 
+	return -1; 
+} 
+
+int main() 
+{ 
+    int s;
+    cout<<"\n Enter size of an array";
+    cin>>s;
+    int arr[s];
+    for(int i=0;i<s;i++)
+    {
+        cin>>arr[i];
+    }
+cout<<"\n Array is ";
+    for(int i=0;i<s;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    int x;
+    cout<<"\n Enter element to be searched ?? ";
+    cin>>x;
+
+    int result = search(arr, s, x); 
+    if(result == -1)
+    cout<<"Element is not present in array";
+    else
+		cout<<"Element is present at index " <<result; 
+return 0; 
+} 
+
+
