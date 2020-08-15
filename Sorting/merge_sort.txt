@@ -1,0 +1,78 @@
+
+
+Merge sort
+
+
+#include <stdio.h> 
+#include <stdlib.h> 
+void printArray(int A[], int size) 
+{ 
+	int i; 
+	for (i = 0; i < size; i++) 
+		printf("%d ", A[i]); 
+	printf("\n"); 
+} 
+
+ 
+void merge(int arr[], int l, int mid, int r) 
+{ 
+	int i=l, j=mid+1, k=0;
+    int n  = r-l+1;
+  int arr_new[n];
+  
+	while (i <= mid && j <= r)
+	{ 
+		if (arr[i] <= arr[j])
+		{ 
+			arr_new[k++] = arr[i]; 
+			i++; 
+		} 
+		else 
+		{ 
+			arr_new[k++] = arr[j]; 
+			j++; 
+		} 
+	} 
+	while (i <= mid)
+	{ 
+		arr_new[k++] = arr[i]; 
+		i++; 
+	} 
+	while (j <= r)
+	{ 
+		arr_new[k++] = arr[j]; 
+		j++; 
+	} 
+	for(i = 0,j = l; i<n ; i++ ,j++)
+	{
+	    arr[j] = arr_new[i];
+	}
+
+
+} 
+void mergeSort(int arr[], int l, int r) 
+{ 
+	if (l < r)
+	  {
+		int mid = (l+r) / 2; 
+        mergeSort(arr, l, mid); 
+		mergeSort(arr, mid + 1, r); 
+
+		merge(arr, l, mid, r); 
+	  }
+} 
+int main() 
+{ 
+	int arr[] = { 12, 11, 13, 5,  7 , 3 ,2 , 8 , 1 , 98 }; 
+	printf("Given array is \n"); 
+	printArray(arr, 10); 
+
+	mergeSort(arr, 0, 9); 
+	
+
+    
+	printf("\nSorted array is \n"); 
+	printArray(arr, 10);     
+return 0; 
+    
+} 
