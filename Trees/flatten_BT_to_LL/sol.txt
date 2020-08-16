@@ -4,10 +4,7 @@ public:
         
         if(root==NULL)
             return ;
-        
-        // leaf node
-        if(root->left==NULL && root->right==NULL)
-            return;
+       
         
         flatten(root->left);
         flatten(root->right);
