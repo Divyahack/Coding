@@ -1,0 +1,71 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+
+const int ALPHABET_SIZE = 26; 
+struct TrieNode 
+{ 
+	struct TrieNode *children[ALPHABET_SIZE]; 
+	bool isEndOfWord; 
+}; 
+struct TrieNode *getNode() 
+{ 
+	struct TrieNode *newNode = new TrieNode; 
+    newNode->isEndOfWord = false; 
+
+	for (int i = 0; i < ALPHABET_SIZE; i++) 
+		newNode->children[i] = NULL; 
+
+	return newNode; 
+} 
+
+void insert(struct TrieNode *root, string key) 
+{ 
+	struct TrieNode *curr = root; 
+
+	for (int i = 0; i < key.length(); i++) 
+	{ 
+		int index = key[i] - 'a'; 
+		if (!curr->children[index])  // if not exist node  
+			curr->children[index] = getNode(); 
+
+		curr = curr->children[index]; 
+	} 	
+       curr->isEndOfWord = true; 
+} 
+ 
+bool search(struct TrieNode *root, string key) 
+{ 
+	struct TrieNode *curr = root; 
+
+	for (int i = 0; i < key.length(); i++) 
+	{ 
+		int index = key[i] - 'a'; 
+		if (!curr->children[index]) 
+			return false; 
+
+		curr = curr->children[index]; 
+	} 
+
+	if(curr!= NULL && curr->isEndOfWord==true)
+	return true;
+	else
+	return false;
+} 
+
+int main() 
+{ 
+	string keys[] = {"the", "a", "there", 
+					"answer", "any", "by", 
+					"bye", "their" }; 
+	int n = sizeof(keys)/sizeof(keys[0]); 
+
+	struct TrieNode *root ;
+	root=getNode(); 
+    for (int i = 0; i < n; i++) 
+		insert(root, keys[i]); 
+    search(root, "bye")? cout << "Yes\n" : 
+						cout << "No\n"; 
+	search(root, "byee")? cout << "Yes\n" : 
+						cout << "No\n"; 
+	return 0; 
+} 
