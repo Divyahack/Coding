@@ -1,25 +1,45 @@
-
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-     void DFS(TreeNode* root, int val, int& res)
-     {
-        if(!root)
-            return;
-        if(root->val != val)
-            res = min(res, root->val);
-        if(root->val == val)
+    priority_queue<int> max_heap;
+    unordered_set<int> s;
+    int findSecondMinimumValue(TreeNode* root) {
+         if(!root)
+             return 0;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
         {
-            DFS(root->left, val, res);
-           DFS(root->right, val, res);
-         }
-     }
-    
-   int findSecondMinimumValue(TreeNode* root) 
-   {
-        int res = INT_MAX;
-        DFS(root, root->val, res);
-        return res == INT_MAX ? -1 : res;
+            TreeNode * temp=q.front();
+                q.pop();
+            
+           if(s.find(temp->val)==s.end()) // not found
+           {
+               max_heap.push(temp->val);
+               s.insert(temp->val);
+           }
+            if(max_heap.size()>2)
+                max_heap.pop();
+            if(temp->left)
+                q.push(temp->left);
+            
+            if(temp->right)
+                q.push(temp->right);
+            
+        }
+        if(max_heap.size()>1)
+           return max_heap.top();
+        else
+            return -1;
     }
-    
-   
 };
