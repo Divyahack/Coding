@@ -1,0 +1,22 @@
+
+
+
+#define MAX 100001 
+
+int minHalls(int lectures[][2], int n) 
+{ 
+	int prefix_sum[MAX] = { 0 }; 
+	for (int i = 0; i < n; i++)
+	{ 
+		prefix_sum[lectures[i][0]]++; 
+		prefix_sum[lectures[i][1] + 1]--; 
+	} 
+
+	for (int i = 1; i < MAX; i++)
+	{ 
+		prefix_sum[i] += prefix_sum[i - 1]; 
+	} 
+
+	return *max_element(prefix_sum , prefix_sum + MAX);; 
+} 
+
