@@ -1,0 +1,28 @@
+/*
+Check if a binary tree is subtree of another binary tree
+
+to check if binary tree S is subtree of another binary tree T 
+*/
+
+bool areIdentical(node * root1, node *root2) 
+{ 	if (root1 == NULL && root2 == NULL) 
+		return true; 
+
+	if (root1 == NULL || root2 == NULL) 
+		return false; 
+
+	return (root1->data == root2->data && 	areIdentical(root1->left, root2->left) && areIdentical(root1->right, root2->right) ); 
+} 
+
+bool isSubtree(node *T, node *S) 
+{ 
+	if (S == NULL) 
+		return true; 
+
+	if (T == NULL) 
+		return false; 
+	if (T->data==S->data && areIdentical(T, S)) 
+		return true; 
+	return isSubtree(T->left, S) || isSubtree(T->right, S); 
+} 
+
