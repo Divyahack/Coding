@@ -1,0 +1,24 @@
+/*Write a program to remove alternate digits of an integer in c/c++.
+
+Intput
+1234567
+
+Output
+1357
+*/
+int removeAlternateDigits(int n)
+{
+
+	int ans=0;
+string str=to_string(n);
+
+	for (int i = 0; i <str.length(); i = i + 2)
+	{
+	    int val= str[i]-'0';
+		ans = ans * 10 +val;
+	}
+
+	return ans;
+
+}
+
