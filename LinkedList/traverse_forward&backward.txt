@@ -1,0 +1,32 @@
+
+Traverse forward and backward LinkdedList using single pointer node.
+
+
+void  forward_traverse(struct node* l) 
+{
+  node *p=l; 
+
+    If (l==NULL) 
+	return ; 
+    else 
+	{
+ 	cout<<p->data; 
+	 forward_traverse(p->next);
+        }
+ } 
+// in reverse direction  
+
+void backward_traverse(struct node* l) 
+{
+  node *p=l; 
+
+    If (l==NULL) 
+	return ; 
+    else 
+	{
+	 backward_traverse(p->next);
+ 	cout<<p->data; 
+
+        }
+ } 
+
