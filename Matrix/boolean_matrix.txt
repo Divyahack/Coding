@@ -1,0 +1,79 @@
+A Boolean Matrix
+Given a boolean matrix mat[M][N] of size M X N, modify it such that if a matrix cell mat[i][j] is 1 (or true) then make all the cells of ith row and jth column as 1.
+Example 1
+The matrix
+1 0
+0 0
+should be changed to following
+1 1
+1 0
+
+Example 2
+The matrix
+0 0 0
+0 0 1
+should be changed to following
+0 0 1
+1 1 1
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T , r , c;
+	cin>>T;
+	while(T)
+	{
+	    cin>>r>>c;
+	    int arr[r][c];
+	    int row[r]={0};
+	    int  col[c]={0};
+	    for(int i=0;i<r;i++)
+	    {
+	        for(int j=0;j<c;j++)
+	        {
+	            cin>>arr[i][j];
+	        }
+	    }
+	    
+	    for(int i=0;i<r;i++)
+	    {
+	        for(int j=0;j<c;j++)
+	        {
+	            if(arr[i][j]==1)
+	            {
+	                row[i]=1;
+	                col[j]=1;
+	            }
+	        }
+	    }
+	    for(int i=0;i<r;i++)
+	    {
+	        for(int j=0;j<c;j++)
+	        {
+	            if(row[i]==1 || col[j]==1)
+	              arr[i][j]=1;
+	        }
+	    }
+	     for(int i=0;i<r;i++)
+	    {
+	        for(int j=0;j<c;j++)
+	        {
+	            cout<<arr[i][j]<<" ";
+	        }
+	        cout<<"\n";
+	    }
+	    
+	    T--;
+	}
+	return 0;
+}
+
+
+
+
+
+
+
