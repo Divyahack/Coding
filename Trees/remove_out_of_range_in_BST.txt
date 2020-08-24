@@ -1,0 +1,32 @@
+Remove BST keys outside the given range
+
+Given a Binary Search Tree (BST) and a range [min, max], remove all keys which are outside the given range. The modified tree should also be BST. 
+For example, consider the following BST and range [-10, 13].
+BinaryTree1
+
+The given tree should be changed to following. Note that all keys outside the range [-10, 13] are removed and modified tree is BST.
+BinaryTreeModified
+
+
+
+node* removeOutsideRange(node *root, int min, int max) 
+{ 
+if (root == NULL) 
+	return NULL; 
+
+root->left = removeOutsideRange(root->left, min, max); 
+root->right = removeOutsideRange(root->right, min, max); 
+if (root->key < min) 
+{ 
+	node *temp = root->right; 
+	delete root; 
+	return temp; 
+} 
+if (root->key > max) 
+{ 
+	node *temp2 = root->left; 
+	delete root; 
+	return temp2; 
+}  
+return root; 
+} 
