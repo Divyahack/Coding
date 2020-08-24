@@ -1,0 +1,31 @@
+Hosoya’s Triangle
+
+The Fibonnaci triangle or Hosoya’s triangle is a triangular arrangement of numbers based on Fibonacci numbers.
+ Each number is the sum of two numbers above in either the left diagonal or the right diagonal. 
+
+// Print the Hosoya triangle of height n. 
+void printHosoya(int N) 
+{ 
+    vector<vector<int>> dp(N , vector<int>(N,0) );
+	dp[0][0] = dp[1][0] = dp[1][1] = 1; 
+    for (int i = 2; i < N; i++)
+    { 
+    	for (int j = 0; j < N; j++)
+    	{ 
+           	if (i > j) 
+				dp[i][j] = dp[i - 1][j] + dp[i - 2][j]; 
+
+			else
+				dp[i][j] = dp[i - 1][j - 1] + dp[i - 2][j - 2]; 
+		} 
+	} 
+
+	// printing the solution 
+	for (int i = 0; i < N; i++)
+	{ 
+		for (int j = 0; j <= i; j++) 
+			cout << dp[i][j] << " ";		 
+
+		cout << endl; 
+	} 
+} 
