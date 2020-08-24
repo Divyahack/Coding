@@ -1,0 +1,35 @@
+Length of longest balanced parentheses prefix
+
+Given a string of open bracket ‘(‘ and closed bracket ‘)’. The task is to find the length of longest balanced prefix.
+
+Examples:
+
+Input : S = "((()())())((" 
+Output : 10
+From index 0 to index 9, they are forming 
+a balanced parentheses prefix.
+
+Input : S = "()(())((()"
+Output : 6
+
+int maxbalancedprefix(char str[], int n) 
+{ 
+	int sum = 0; 
+	int maxi = 0; 
+
+	for (int i = 0; i < n; i++) 
+       { 
+
+		if (str[i] == '(') 
+			sum += 1; 
+		else
+			sum -= 1; 
+		if (sum < 0) 
+			break; 
+		if (sum == 0) 
+			maxi = i + 1; 
+	} 
+
+	return maxi; 
+} 
+
