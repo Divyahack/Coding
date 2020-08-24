@@ -1,0 +1,29 @@
+Largest sum contiguous increasing subarray
+
+Given an array of n positive distinct integers. The problem is to find the largest sum of contiguous increasing subarray in O(n) time complexity.
+
+Examples :
+
+Input : arr[] = {2, 1, 4, 7, 3, 6}
+Output : 12
+Contiguous Increasing subarray {1, 4, 7} = 12
+a
+Input : arr[] = {38, 7, 8, 10, 12}
+Output : 38
+
+int largestSum(int arr[], int n) 
+{ 
+	int result = INT_MIN; 
+ 	for (int i = 0; i < n; i++) 
+	{ 
+	    int  curr_sum=arr[i];
+	    while ( (i+1) < n && arr[i + 1] > arr[i]) 
+		{ 
+			curr_sum = curr_sum +arr[i + 1]; 
+			i++; 
+		} 
+    result=max(result , curr_sum);
+	} 
+
+	return result; 
+} 
